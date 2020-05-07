@@ -7,4 +7,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'app';
+
+  url = 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR23EgR0Yd2nSkotp4Lb13svjgmXoGmGTQBqmWS7TpgTiCdo_GK&usqp=CAU';
+
+  description = 'Midoriya';
 }
