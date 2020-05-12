@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { PhotoModel } from './photo.model';
 
 const API = 'http://localhost:3000';
@@ -13,5 +13,11 @@ export class PhotoService {
 
   getPhotosByUser(user: string) {
     return this.http.get<PhotoModel[]>(`${API}/${user}/photos`);
+  }
+
+  getPhotosByUserPaginate(user: string, page: number) {
+    const params = new HttpParams().append('page', page.toString());
+
+    return this.http.get<PhotoModel[]>(`${API}/${user}/photos`, { params });
   }
 }
