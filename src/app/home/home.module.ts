@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { SignInModule } from './sign-in/sign-in.module';
 import { SignUpModule } from './sign-up/sign-up.module';
 import { HomeComponent } from './home.component';
+import { SignUpService } from './sign-up/sign-up.service';
 
 @NgModule({
   imports: [
@@ -13,6 +14,7 @@ import { HomeComponent } from './home.component';
     SignInModule,
     SignUpModule,
   ],
-  declarations: [HomeComponent]
+  declarations: [HomeComponent],
+  providers: [SignUpService]
 })
 export class HomeModule { }
