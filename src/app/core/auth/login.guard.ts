@@ -5,13 +5,13 @@ import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from
 @Injectable({
   providedIn: 'root'
 })
-export class AuthGuard implements CanActivate {
+export class LoginGuard implements CanActivate {
   constructor(private userService: UserService, private router: Router) {
   }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    if (!this.userService.isLogged()) {
-      this.router.navigate(['']);
+    if (this.userService.isLogged()) {
+      this.router.navigate(['user', this.userService.getUserName()]);
       return false;
     }
 

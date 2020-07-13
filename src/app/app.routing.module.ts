@@ -8,19 +8,20 @@ import { SignInComponent } from './home/sign-in/sign-in.component';
 import { AuthGuard } from './core/auth/auth.guard';
 import { SignUpComponent } from './home/sign-up/sign-up.component';
 import { HomeComponent } from './home/home.component';
+import { LoginGuard } from './core/auth/login.guard';
 
 const routes: Routes = [
   {
     path: '',
     component: HomeComponent,
-    canActivate: [AuthGuard],
+    canActivate: [LoginGuard],
     children: [
       { path: '', component: SignInComponent },
       { path: 'sign-up', component: SignUpComponent },
     ]
   },
   { path: 'user/:userName', component: PhotoListComponent, resolve: { photos: PhotoListResolver } },
-  { path: 'p/add', component: PhotoFormComponent },
+  { path: 'p/add', component: PhotoFormComponent, canActivate: [AuthGuard] },
   { path: '**', component: NotFoundComponent }
 ];
 
