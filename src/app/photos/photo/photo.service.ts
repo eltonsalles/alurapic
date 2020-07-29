@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { PhotoModel } from './photo.model';
+import { PhotoCommentModel } from './photo.comment';
 
 const API = 'http://localhost:3000';
 
@@ -30,7 +31,19 @@ export class PhotoService {
     return this.http.post(`${API}/photos/upload`, formData);
   }
 
-  findById(id: string) {
-    return this.http.get<PhotoModel>(`${API}/photos/${id}`);
+  findById(photoId: number) {
+    return this.http.get<PhotoModel>(`${API}/photos/${photoId}`);
+  }
+
+  getComments(photoId: number) {
+    return this.http.get<PhotoCommentModel[]>(`${API}/photos/${photoId}/comments`);
+  }
+
+  addComment(photoId: number, commentText: string) {
+    return this.http.post(`${API}/photos/${photoId}/comments`, { commentText });
+  }
+
+  removePhoto(photoId: number) {
+    return this.http.delete(`${API}/photos/${photoId}`);
   }
 }
